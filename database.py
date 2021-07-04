@@ -7,18 +7,7 @@ conn = sqlite3.connect('customer.db')
 c = conn.cursor()
 
 # Create a table
-c.execute("""CREATE TABLE customers (
-    first_name text,
-    last_name text,
-    email text
-)""")
-
-# The SQLite datatypes:
-# NULL
-# INTEGER
-# REAL
-# TEXT
-# BLOB - Stores data exactly how it is, i.e. images, audio, video
+c.execute ("INSERT INTO customers VALUES ('Leah', 'Smith', 'leah@example.com')")
 
 # Commit our command
 conn.commit()
