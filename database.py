@@ -8,10 +8,14 @@ c = conn.cursor()
 
 # Query the database
 c.execute("SELECT * FROM customers")
-# c.fetchone() # Fetches one record (defaults to last record)
-# c.fetchmany() # Fetches as many as you ask for
-# c.fetchall() # Fetches everything
-print(c.fetchall())
+
+items = c.fetchall()
+
+for item in items:
+    print(item) # Prints out each entry as a tuple, which means you can do formating like this:
+    print(f"First name: {item[0]}")
+    print(f"Last name: {item[1]}")
+    print(f"Email: {item[2]}")
 
 # Commit our command
 conn.commit()
