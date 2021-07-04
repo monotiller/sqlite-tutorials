@@ -29,3 +29,11 @@ def add_one(first, last, email):
     c.execute("INSERT INTO customers VALUES (?,?,?)", (first, last, email))
     conn.commit()
     conn.close
+
+# Delete a record from the table
+def delete_one(id):
+    conn = sqlite3.connect('customer.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM customers WHERE rowid = (?)", id)
+    conn.commit()
+    conn.close
