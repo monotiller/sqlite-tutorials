@@ -21,3 +21,11 @@ def show_all():
 
     # Close our connection
     conn.close
+
+# Add a new record to the table
+def add_one(first, last, email):
+    conn = sqlite3.connect('customer.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO customers VALUES (?,?,?)", (first, last, email))
+    conn.commit()
+    conn.close
