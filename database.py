@@ -7,15 +7,10 @@ conn = sqlite3.connect('customer.db')
 c = conn.cursor()
 
 # Query the database
-c.execute("SELECT * FROM customers")
+c.execute("SELECT rowid, * FROM customers") # rowid is how you access the id of each entry, so instead of searching for "Joe Bloggs" you can just call key 3 for example
 
 items = c.fetchall()
-
-for item in items:
-    print(item) # Prints out each entry as a tuple, which means you can do formating like this:
-    print(f"First name: {item[0]}")
-    print(f"Last name: {item[1]}")
-    print(f"Email: {item[2]}")
+print(items)
 
 # Commit our command
 conn.commit()
