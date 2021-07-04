@@ -7,10 +7,11 @@ conn = sqlite3.connect('customer.db')
 c = conn.cursor()
 
 # Query the database - ORDER BY
-c.execute("SELECT * FROM customers WHERE last_name LIKE 'Br%' OR rowid = 3") # So we can use this where we vaguely remember someone's surname but we might remember the rowid
+c.execute("SELECT rowid, * FROM customers ORDER BY rowid DESC LIMIT 2")
 
 items = c.fetchall()
-print(items)
+for item in items:
+    print(item)
 
 # Commit our command
 conn.commit()
