@@ -6,15 +6,12 @@ conn = sqlite3.connect('customer.db')
 # Create a cursor
 c = conn.cursor()
 
-# Create a python list with multiple entries
-many_customers = [
-    ('Wes,' 'Brown', 'wes@example.com'),
-    ('Joe', 'Bloggs', 'joe@example.com'),
-    ('John', 'Smith', 'john@example.com'),
-]
-
-# Create a table
-c.executemany("INSERT INTO customers VALUES (?, ?, ?)", many_customers) # ? is used as the placeholder in SQLite
+# Query the database
+c.execute("SELECT * FROM customers")
+# c.fetchone() # Fetches one record (defaults to last record)
+# c.fetchmany() # Fetches as many as you ask for
+# c.fetchall() # Fetches everything
+print(c.fetchall())
 
 # Commit our command
 conn.commit()
