@@ -6,10 +6,8 @@ conn = sqlite3.connect('customer.db')
 # Create a cursor
 c = conn.cursor()
 
-# Update records
-c.execute("""UPDATE customers SET first_name = 'Bob'
-            WHERE last_name = 'Smith'
-""")
+# Delete Records
+c.execute("DELETE from customers WHERE rowid = 6")
 
 conn.commit()
 
