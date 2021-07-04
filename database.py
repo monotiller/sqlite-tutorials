@@ -20,7 +20,7 @@ def show_all():
     conn.commit()
 
     # Close our connection
-    conn.close
+    conn.close()
 
 # Add a new record to the table
 def add_one(first, last, email):
@@ -28,7 +28,7 @@ def add_one(first, last, email):
     c = conn.cursor()
     c.execute("INSERT INTO customers VALUES (?,?,?)", (first, last, email))
     conn.commit()
-    conn.close
+    conn.close()
 
 # Add many records to a table
 def add_many(list):
@@ -36,7 +36,7 @@ def add_many(list):
     c = conn.cursor()
     c.executemany("INSERT INTO customers VALUES (?,?,?)", (list))
     conn.commit()
-    conn.close
+    conn.close()
 
 # Delete a record from the table
 def delete_one(id):
@@ -44,4 +44,14 @@ def delete_one(id):
     c = conn.cursor()
     c.execute("DELETE FROM customers WHERE rowid = (?)", id)
     conn.commit()
-    conn.close
+    conn.close()
+
+# Lookup with WHERE
+def email_lookup(email):
+    conn = sqlite3.connect('customer.db')
+    c = conn.cursor()
+    c.execute("SELECT rowid, * from customers WHERE email = (?)", (email,))
+    items = c.fetchall()
+    for item in items:
+        print(item)
+    conn.close()
