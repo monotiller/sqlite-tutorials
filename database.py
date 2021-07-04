@@ -6,8 +6,12 @@ conn = sqlite3.connect('customer.db')
 # Create a cursor
 c = conn.cursor()
 
+# Drop table
+c.execute("DROP TABLE customers")
+conn.commit()
+
 # Query the database - ORDER BY
-c.execute("SELECT rowid, * FROM customers ORDER BY rowid DESC LIMIT 2")
+c.execute("SELECT rowid, * FROM customers")
 
 items = c.fetchall()
 for item in items:
